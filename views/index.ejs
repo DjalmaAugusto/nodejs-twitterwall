@@ -4,10 +4,6 @@
     <meta charset="utf-8">
     <title><%= title %></title>
 
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
-    <link rel='stylesheet' href='/stylesheets/TweetList.css'/>
-
     <script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.18/angular.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.18/angular-resource.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.18/angular-sanitize.min.js"></script>
@@ -16,34 +12,32 @@
     <script src="//platform.twitter.com/widgets.js"></script>
     <script src="/javascripts/TweetList.js"></script>
 
+    <link rel="stylesheet" type="text/css" href="http://www.typo3camp-rheinruhr.de/typo3conf/ext/t3crr/Resources/Public/Stylesheets/main.min.css?1504615571" media="all">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/TweetList.css" media="all">
 </head>
 <body>
 
+<div class="background-white">
+
+    <!-- INFOBAR START -->
+    <div id="infobar">
+        <div class="row">
+            <a href="tickets.html">03.11-05.11 im Unperfekthaus, Essen.</a>
+        </div>
+    </div>
+
+    <!-- HEADER START -->
+    <header id="top" class="pageheader">
+        <div class="row">
+            <a class="pull_left" id="logo" href="http://www.typo3camp-rheinruhr.de/">
+                <img src="http://www.typo3camp-rheinruhr.de/typo3conf/ext/t3crr/Resources/Public/Images/typo3camp-rheinruhr.png" width="245" title="TYPO3camp RheinRuhr" alt="TYPO3camp RheinRuhr">
+            </a>
+        </div>
+    </header>
+    <!-- HEADER END -->
+
 <!-- the root element of the view assigned to the TweetList javascript controller-->
 <div ng-controller="TweetList">
-
-    <div class="row">
-        <div class="col-lg-12">
-            <h1><img id="twitter-logo" src="images/Twitter_logo_white.png"/><%= title %></h1>
-        </div>
-    </div>
-
-    <div id="search-container" class="row">
-        <div class="col-lg-3">
-
-            <!-- this form will trigger the getTweets function in the javascript controller on submit -->
-            <form class="input-group" ng-submit="getTweets()">
-                <span class="input-group-addon">@</span>
-
-                <!-- this text input is binded to a variable in the javascript controller -->
-                <input type="text" class="form-control" placeholder="TwitterDev" ng-model="parameter">
-
-                <span class="input-group-btn">
-                    <button class="btn btn-default" type="submit">Get Tweets</button>
-                </span>
-            </form>
-        </div>
-    </div>
 
     <div class="row clearfix">
         <div class="col-lg-12">
@@ -71,15 +65,19 @@
         </div>
     </div>
 
-    <div class="row">
-        <div class="col-lg-12">
+</div>
 
-            <!-- this button will trigger the getMoreTweets function in the javascript controller -->
-            <button type="button" class="load-more-btn btn btn-default" ng-click="getMoreTweets()">Get More Tweets
-            </button>
-
+    <!-- FOOTER START -->
+    <footer class="footer-page">
+        <div class="row">
+            <div class="footer-logo">
+                <a href="http://www.typo3camp-rheinruhr.de/">
+                    <img src="http://www.typo3camp-rheinruhr.de/typo3conf/ext/t3crr/Resources/Public/Images/typo3camp-rheinruhr-grey.png" width="173" height="56" alt="TYPO3camp Rhein Ruhr">
+                </a>
+            </div>
         </div>
-    </div>
+    </footer>
+    <!-- FOOTER END -->
 
 </div>
 
