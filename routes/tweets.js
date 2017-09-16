@@ -7,8 +7,6 @@ var config = require('../config');
 var twitter = new Twit(config.twitter);
 
 var TWEET_COUNT = 15;
-var MAX_WIDTH = 305;
-var OEMBED_URL = 'statuses/oembed';
 var USER_TIMELINE_URL = 'statuses/user_timeline';
 var SEARCH_TIMELINE_URL = 'search/tweets';
 
@@ -17,11 +15,13 @@ var SEARCH_TIMELINE_URL = 'search/tweets';
  */
 router.get('/user_timeline/:user', function (req, res) {
 
-	var oEmbedTweets = [], tweets = [],
+	var tweets = [],
 
 		params = {
-			screen_name: req.params.user, // the user id passed in as part of the route
-			count: TWEET_COUNT // how many tweets to return
+			// the user id passed in as part of the route
+			screen_name: req.params.user,
+			// how many tweets to return
+			count: TWEET_COUNT
 		};
 
 	// the max_id is passed in via a query string param
@@ -31,53 +31,24 @@ router.get('/user_timeline/:user', function (req, res) {
 
 	// request data
 	twitter.get(USER_TIMELINE_URL, params, function (err, data, resp) {
-
 		tweets = data;
 
-		var i = 0, len = tweets.length;
-
-		for (i; i < len; i++) {
-			getOEmbed(tweets[i]);
+		if (tweets.length > 0) {
+			res.setHeader('Content-Type', 'application/json');
+			res.send(tweets);
 		}
 	});
-
-	/**
-	 * requests the oEmbed html
-	 */
-	function getOEmbed(tweet) {
-
-		// oEmbed request params
-		var params = {
-			"id": tweet.id_str,
-			"maxwidth": MAX_WIDTH,
-			"hide_thread": true,
-			"omit_script": true
-		};
-
-		// request data
-		twitter.get(OEMBED_URL, params, function (err, data, resp) {
-			tweet.oEmbed = data;
-			oEmbedTweets.push(tweet);
-
-			// do we have oEmbed HTML for all Tweets?
-			if (oEmbedTweets.length == tweets.length) {
-				res.setHeader('Content-Type', 'application/json');
-				res.send(oEmbedTweets);
-			}
-		});
-	}
 });
 
 /**
  * GET tweets json.
  */
 router.get('/search/:search', function (req, res) {
-
-	var oEmbedTweets = [], tweets = [],
+	var tweets = [],
 
 		params = {
-			q: req.params.search, // the search passed in as part of the route
-			result_type: 'recent'
+			// the search passed in as part of the route
+			q: req.params.search + ' AND exclude:retweets'
 		};
 
 	// the max_id is passed in via a query string param
@@ -87,41 +58,13 @@ router.get('/search/:search', function (req, res) {
 
 	// request data
 	twitter.get(SEARCH_TIMELINE_URL, params, function (err, data, resp) {
-
 		tweets = data.statuses;
 
-		var i = 0, len = tweets.length;
-
-		for (i; i < len; i++) {
-			getOEmbed(tweets[i]);
+		if (tweets.length > 0) {
+			res.setHeader('Content-Type', 'application/json');
+			res.send(tweets);
 		}
 	});
-
-	/**
-	 * requests the oEmbed html
-	 */
-	function getOEmbed(tweet) {
-
-		// oEmbed request params
-		var params = {
-			"id": tweet.id_str,
-			"maxwidth": MAX_WIDTH,
-			"hide_thread": true,
-			"omit_script": true
-		};
-
-		// request data
-		twitter.get(OEMBED_URL, params, function (err, data, resp) {
-			tweet.oEmbed = data;
-			oEmbedTweets.push(tweet);
-
-			// do we have oEmbed HTML for all Tweets?
-			if (oEmbedTweets.length == tweets.length) {
-				res.setHeader('Content-Type', 'application/json');
-				res.send(oEmbedTweets);
-			}
-		});
-	}
 });
 
 module.exports = router;

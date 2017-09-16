@@ -1,34 +1,7 @@
+/* global angular */
 var app = angular.module('Twitter', ['ngResource', 'ngSanitize']);
 
 app.controller('TweetList', function ($scope, $resource, $timeout) {
-
-	/**
-	 * init controller and set defaults
-	 */
-	function init() {
-
-		// set a default username value
-		$scope.parameter = "#t3crr17";
-
-		// empty tweet model
-		$scope.tweetsResult = [];
-
-		// initiate masonry.js
-		$scope.msnry = new Masonry('#tweet-list', {
-			columnWidth: 320,
-			itemSelector: '.tweet-item',
-			transitionDuration: 0,
-			isFitWidth: true
-		});
-
-		// layout masonry.js on widgets.js loaded event
-		twttr.events.bind('loaded', function () {
-			$scope.msnry.reloadItems();
-			$scope.msnry.layout();
-		});
-
-		$scope.getTweets();
-	}
 
 	/**
 	 * requests and processes tweet data
@@ -50,35 +23,48 @@ app.controller('TweetList', function ($scope, $resource, $timeout) {
 		// GET request using the resource
 		$scope.tweets.query({}, function (res) {
 
-			if (angular.isUndefined(paging)) {
+			if (paging === false) {
 				$scope.tweetsResult = [];
 			}
 
 			$scope.tweetsResult = $scope.tweetsResult.concat(res);
-
+console.log($scope.tweetsResult);
 			// for paging - https://dev.twitter.com/docs/working-with-timelines
 			$scope.maxId = res[res.length - 1].id;
 
 			// render tweets with widgets.js
 			$timeout(function () {
-				twttr.widgets.load();
-			}, 30);
+				getTweets(paging);
+			}, 300000);
 		});
 	}
 
 	/**
-	 * binded to @user input form
+	 * bound to @user input form
 	 */
 	$scope.getTweets = function () {
 		$scope.maxId = undefined;
 		getTweets();
-	}
+	};
 
 	/**
-	 * binded to 'Get More Tweets' button
+	 * bound to 'Get More Tweets' button
 	 */
 	$scope.getMoreTweets = function () {
 		getTweets(true);
+	};
+
+	/**
+	 * init controller and set defaults
+	 */
+	function init() {
+		// set a default username value
+		$scope.parameter = "#t3crr17";
+
+		// empty tweet model
+		$scope.tweetsResult = [];
+
+		$scope.getTweets(false);
 	}
 
 	init();

@@ -1,11 +1,11 @@
-var express = require('express');
-var path = require('path');
-var index = require('./routes/index');
-var tweets = require('./routes/tweets');
-var app = express();
+var express = require('express'),
+	path = require('path'),
+	index = require('./routes/index'),
+	tweets = require('./routes/tweets'),
+	app = express();
 
 // serve static assets from the public directory
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'public')), function () {});
 
 // look for view html in the views directory
 app.set('views', path.join(__dirname, 'views'));
@@ -16,7 +16,6 @@ app.set('view engine', 'ejs');
 // setup routes
 app.use('/', index);
 app.use('/tweets', tweets);
-
 
 module.exports = app;
 

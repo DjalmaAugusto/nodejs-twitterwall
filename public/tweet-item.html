@@ -3,5 +3,9 @@
 
 <!-- binding to Tweet source property -->
 <div class="tweet-details">
-	Source: <span ng-bind-html="tweet.source"></span>
+	<div class="text"><%= twitter.text %></div>
+	<div class="user">
+		<div class="avatar"><img ng-src="twitter.user.profile_image_url_https"/></div>
+		<div class="name"><%= twitter.user.screen_name %></div>
+	</div>
 </div>
