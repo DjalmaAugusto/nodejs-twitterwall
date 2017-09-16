@@ -14,7 +14,6 @@ var SEARCH_TIMELINE_URL = 'search/tweets';
  * GET tweets json.
  */
 router.get('/user_timeline/:user', function (req, res) {
-
 	var tweets = [],
 
 		params = {
@@ -48,7 +47,9 @@ router.get('/search/:search', function (req, res) {
 
 		params = {
 			// the search passed in as part of the route
-			q: req.params.search + ' AND exclude:retweets'
+			q: req.params.search + ' AND exclude:retweets',
+			// how many tweets to return
+			count: TWEET_COUNT
 		};
 
 	// the since_id is passed in via a query string param
