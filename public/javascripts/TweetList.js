@@ -13,8 +13,8 @@ app.controller('TweetList', function ($scope, $resource, $timeout) {
 			parameter: $scope.parameter
 		};
 
-		if ($scope.maxId) {
-			params.max_id = $scope.maxId;
+		if ($scope.sinceId) {
+			params.since_id = $scope.sinceId;
 		}
 
 		// create Tweet data resource
@@ -28,11 +28,11 @@ app.controller('TweetList', function ($scope, $resource, $timeout) {
 			}
 
 			$scope.tweetsResult = $scope.tweetsResult.concat(res);
-console.log($scope.tweetsResult);
-			// for paging - https://dev.twitter.com/docs/working-with-timelines
-			$scope.maxId = res[res.length - 1].id;
 
-			// render tweets with widgets.js
+			// for paging - https://dev.twitter.com/docs/working-with-timelines
+			$scope.sinceId = res[res.length - 1].id;
+
+			// retry after amount of milli seconds
 			$timeout(function () {
 				getTweets(paging);
 			}, 300000);

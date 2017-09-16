@@ -6,21 +6,63 @@ a {
 	text-decoration: none;
 }
 
-.tweet-item {
-	margin-bottom: 10px;
-}
-
-.tweet-details {
-	padding-left: 15px;
-	font-size: 11px;
-	color: #999;
-}
-
-.tweet-details a {
-	color: #999;
+.tweet-list {
+	min-height: 600px;
 }
 
 .row {
-	max-width: 1900px;
+	max-width: 1840px;
 	margin: 0 40px;
+}
+
+
+/********** TWEET **********/
+.tweet {
+	display: block;
+	line-height: 0;
+	margin: 0 1em 2em 1em;
+	color: #333333;
+	float: left;
+}
+
+.tweet.hidden {
+	display: none;
+}
+
+.tweet .tweet-content {
+	line-height: 1.5em;
+	height: 116px;
+	overflow: hidden;
+	font-size: 1em;
+	word-wrap: break-word;
+	padding: 1em;
+	background: #f2f2f1;
+	-moz-border-radius: 10px;
+	border-radius: 10px;
+}
+
+.tweet .tweet-content p a {
+	font-weight: normal;
+}
+
+.tweet .tweet-author {
+	padding: 0.5em 1em 1em 1em;
+}
+
+.tweet .tweet-author img {
+	overflow: hidden;
+	-moz-border-radius: 2px;
+	border-radius: 2px;
+	width: 20px;
+	height: 20px;
+	display: inline-block;
+	vertical-align: middle;
+}
+
+.tweet .tweet-author .name,
+.tweet .tweet-author a,
+.tweet .tweet-author a:hover {
+	color: #555555;
+	margin: 0 0 0 5px;
+	display: inline-block;
 }

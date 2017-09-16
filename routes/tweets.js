@@ -24,9 +24,9 @@ router.get('/user_timeline/:user', function (req, res) {
 			count: TWEET_COUNT
 		};
 
-	// the max_id is passed in via a query string param
-	if (req.query.max_id) {
-		params.max_id = req.query.max_id;
+	// the since_id is passed in via a query string param
+	if (req.query.since_id) {
+		params.since_id = req.query.since_id;
 	}
 
 	// request data
@@ -51,9 +51,9 @@ router.get('/search/:search', function (req, res) {
 			q: req.params.search + ' AND exclude:retweets'
 		};
 
-	// the max_id is passed in via a query string param
-	if (req.query.max_id) {
-		params.max_id = req.query.max_id;
+	// the since_id is passed in via a query string param
+	if (req.query.since_id) {
+		params.since_id = req.query.since_id;
 	}
 
 	// request data

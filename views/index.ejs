@@ -34,22 +34,26 @@
     </header>
     <!-- HEADER END -->
 
-<!-- the root element of the view assigned to the TweetList javascript controller-->
-<div ng-controller="TweetList">
+    <!-- the root element of the view assigned to the TweetList javascript controller-->
+    <div ng-controller="TweetList" class="tweet-list">
 
-    <div class="row clearfix">
-        <div ng-repeat="tweet in tweetsResult" class="col-lg-3 tweet-details">
+        <div class="row clearfix">
 
-            <div class="text">{{tweet.text}}</div>
-            <div class="user">
-                <div class="avatar"><img src="{{tweet.user.profile_image_url_https}}"/></div>
-                <div class="name">{{tweet.user.screen_name}}</div>
+            <div ng-repeat="tweet in tweetsResult" class="three columns tweet">
+
+                <div class="tweet-content">
+                    <p>{{tweet.text}}</p>
+                </div>
+                <div class="tweet-author">
+                    <img ng-src="{{tweet.user.profile_image_url_https}}"/>
+                    <div class="name">{{tweet.user.screen_name}}</div>
+                </div>
+
             </div>
 
         </div>
-    </div>
 
-</div>
+    </div>
 
     <!-- FOOTER START -->
     <footer class="footer-page">
