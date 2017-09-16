@@ -8,8 +8,8 @@ app.controller('TweetList', function($scope, $resource, $timeout) {
     function init () {
 
       // set a default username value
-      $scope.username = "twitterdev";
-      
+      $scope.parameter = "#t3crr17";
+
       // empty tweet model
       $scope.tweetsResult = [];
 
@@ -36,8 +36,8 @@ app.controller('TweetList', function($scope, $resource, $timeout) {
     function getTweets (paging) {
 
       var params = {
-        action: 'user_timeline',
-        user: $scope.username
+        action: 'search',
+        parameter: $scope.parameter
       };
 
       if ($scope.maxId) {
@@ -45,7 +45,7 @@ app.controller('TweetList', function($scope, $resource, $timeout) {
       }
 
       // create Tweet data resource
-      $scope.tweets = $resource('/tweets/:action/:user', params);
+      $scope.tweets = $resource('/tweets/:action/:parameter', params);
 
       // GET request using the resource
       $scope.tweets.query( { }, function (res) {
