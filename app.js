@@ -8,7 +8,7 @@ var express = require('express'),
 app.use(express.static(path.join(__dirname, 'public')), function () {});
 
 // look for view html in the views directory
-app.set('views', path.join(__dirname, 'views'));
+app.set('views', path.join(__dirname, 'private/views'));
 
 // use ejs to render
 app.set('view engine', 'ejs');

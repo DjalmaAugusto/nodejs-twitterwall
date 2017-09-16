@@ -1,0 +1,64 @@
+a {
+    text-decoration: none;
+}
+
+.tweet-list {
+    min-height: 49.5em;
+    margin-top: 1em;
+}
+
+.row {
+    margin: 0 2.5em;
+    max-width: 115em;
+}
+
+/********** TWEET **********/
+.tweet {
+    color: #333333;
+    display: block;
+    float: left;
+    line-height: 0;
+    margin-bottom: 2em;
+
+    &.hidden {
+        display: none;
+    }
+
+    .tweet-content {
+        background: #f2f2f1;
+        -moz-border-radius: 0.75em;
+        border-radius: 0.75em;
+        font-size: 1em;
+        height: 7.25em;
+        line-height: 1.5em;
+        overflow: hidden;
+        padding: 1em;
+        word-wrap: break-word;
+
+        p a {
+            font-weight: normal;
+        }
+    }
+
+    .tweet-author {
+        padding: 0.5em 1em 1em 1em;
+
+        img {
+            -moz-border-radius: 0.125em;
+            border-radius: 0.125em;
+            display: inline-block;
+            height: 1.25em;
+            overflow: hidden;
+            vertical-align: middle;
+            width: 1.25em;
+        }
+
+        .name,
+        a,
+        a:hover {
+            color: #555555;
+            display: inline-block;
+            margin: 0 0 0 0.3em;
+        }
+    }
+}

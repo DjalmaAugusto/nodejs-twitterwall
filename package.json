@@ -1,18 +1,38 @@
 {
-  "name": "sample-angular-node",
+  "name": "nodejs-twitterwall",
   "version": "0.0.1",
   "private": true,
-  "scripts": {
-    "start": "node app.js"
-  },
+
   "dependencies": {
     "ejs": "~0.8.5",
     "express": "~4.2.0",
     "qs": "*",
     "twit": "^1.1.18"
   },
+
+  "devDependencies": {
+    "node-sass": "latest",
+    "csslint": "latest",
+    "jshint": "latest",
+    "uglify-js": "latest"
+  },
+
   "engines": {
     "node": "0.10.x",
     "npm": "1.2.x"
+  },
+
+  "scripts": {
+    "start": "node app.js",
+
+    "node-sass": "node-sass --output-style compressed private/scss/TweetList.scss public/stylesheets/TweetList.min.css",
+    "build:css": "npm run node-sass",
+
+    "node-sass:dev": "node-sass --output-style expanded private/scss/TweetList.scss public/stylesheets/TweetList.css",
+    "csslint": "csslint --quiet public/stylesheets/TweetList.css",
+    "build:dev:css": "npm run node-sass:dev",
+
+    "build:dev": "npm run build:dev:css",
+    "build": "npm run build:dev:css && npm run build:css"
   }
 }
