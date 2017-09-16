@@ -29,13 +29,18 @@ app.controller('TweetList', function ($scope, $resource, $timeout) {
 
 			$scope.tweetsResult = $scope.tweetsResult.concat(res);
 
+			$scope.tweetsResult1 = $scope.tweetsResult;
+			$scope.tweetsResult2 = $scope.tweetsResult;
+			$scope.tweetsResult3 = $scope.tweetsResult;
+			$scope.tweetsResult4 = $scope.tweetsResult;
+
 			// for paging - https://dev.twitter.com/docs/working-with-timelines
 			$scope.sinceId = res[res.length - 1].id;
 
 			// retry after amount of milli seconds
 			$timeout(function () {
 				getTweets(paging);
-			}, 300000);
+			}, 3000000);
 		});
 	}
 
