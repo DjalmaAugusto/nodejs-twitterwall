@@ -38,11 +38,10 @@
     <div ng-controller="TweetList" class="tweet-list">
 
         <div class="row clearfix">
-
             <div ng-repeat="tweet in tweetsResult1" class="three columns tweet">
 
                 <div class="tweet-content">
-                    <p>{{tweet.text}}</p>
+                    <p ng-bind-html="tweet.text | trust"></p>
                 </div>
                 <div class="tweet-author">
                     <img ng-src="{{tweet.user.profile_image_url_https}}"/>
@@ -50,15 +49,13 @@
                 </div>
 
             </div>
-
         </div>
 
         <div class="row clearfix">
-
             <div ng-repeat="tweet in tweetsResult2" class="three columns tweet">
 
                 <div class="tweet-content">
-                    <p>{{tweet.text}}</p>
+                    <p ng-bind-html="tweet.text | trust"></p>
                 </div>
                 <div class="tweet-author">
                     <img ng-src="{{tweet.user.profile_image_url_https}}"/>
@@ -66,15 +63,13 @@
                 </div>
 
             </div>
-
         </div>
 
         <div class="row clearfix">
-
             <div ng-repeat="tweet in tweetsResult3" class="three columns tweet">
 
                 <div class="tweet-content">
-                    <p>{{tweet.text}}</p>
+                    <p ng-bind-html="tweet.text | trust"></p>
                 </div>
                 <div class="tweet-author">
                     <img ng-src="{{tweet.user.profile_image_url_https}}"/>
@@ -82,15 +77,13 @@
                 </div>
 
             </div>
-
         </div>
 
         <div class="row clearfix">
-
             <div ng-repeat="tweet in tweetsResult4" class="three columns tweet">
 
                 <div class="tweet-content">
-                    <p>{{tweet.text}}</p>
+                    <p ng-bind-html="tweet.text | trust"></p>
                 </div>
                 <div class="tweet-author">
                     <img ng-src="{{tweet.user.profile_image_url_https}}"/>
@@ -102,7 +95,6 @@
             <div class="three columns logo">
                 animiertes logo
             </div>
-
         </div>
 
     </div>

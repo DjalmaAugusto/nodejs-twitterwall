@@ -74,3 +74,9 @@ app.controller('TweetList', function ($scope, $resource, $timeout) {
 
 	init();
 });
+
+app.filter("trust", ['$sce', function($sce) {
+	return function(htmlCode){
+		return $sce.trustAsHtml(htmlCode);
+	}
+}]);
