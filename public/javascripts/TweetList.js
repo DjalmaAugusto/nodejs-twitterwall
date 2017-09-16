@@ -2,37 +2,37 @@
 var app = angular.module('Twitter', ['ngResource', 'ngSanitize']);
 
 app.controller('TweetList', function ($scope, $resource, $timeout) {
+	var allTweets = [];
 
 	/**
 	 * requests and processes tweet data
 	 */
 	function getTweets(paging) {
-
-		var params = {
+		var parameter = {
 			action: 'search',
 			parameter: $scope.parameter
 		};
 
 		if ($scope.sinceId) {
-			params.since_id = $scope.sinceId;
+			parameter.since_id = $scope.sinceId;
 		}
 
 		// create Tweet data resource
-		$scope.tweets = $resource('/tweets/:action/:parameter', params);
+		$scope.tweets = $resource('/tweets/:action/:parameter', parameter);
 
 		// GET request using the resource
 		$scope.tweets.query({}, function (res) {
 
 			if (paging === false) {
-				$scope.tweetsResult = [];
+				allTweets = [];
 			}
 
-			$scope.tweetsResult = $scope.tweetsResult.concat(res);
+			allTweets = allTweets.concat(res);
 
-			$scope.tweetsResult1 = $scope.tweetsResult;
-			$scope.tweetsResult2 = $scope.tweetsResult;
-			$scope.tweetsResult3 = $scope.tweetsResult;
-			$scope.tweetsResult4 = $scope.tweetsResult;
+			$scope.tweetsResult1 = allTweets.slice(0,4);
+			$scope.tweetsResult2 = allTweets.slice(0,4);
+			$scope.tweetsResult3 = allTweets.slice(0,4);
+			$scope.tweetsResult4 = allTweets.slice(0,3);
 
 			// for paging - https://dev.twitter.com/docs/working-with-timelines
 			$scope.sinceId = res[res.length - 1].id;
@@ -64,7 +64,7 @@ app.controller('TweetList', function ($scope, $resource, $timeout) {
 	 */
 	function init() {
 		// set a default username value
-		$scope.parameter = "#t3crr17";
+		$scope.parameter = "t3crr";
 
 		// empty tweet model
 		$scope.tweetsResult = [];
