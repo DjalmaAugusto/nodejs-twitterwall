@@ -38,7 +38,7 @@
     <div ng-controller="TweetList" class="tweet-list">
 
         <div class="row clearfix">
-            <div ng-repeat="tweet in tweetsResult1" class="three columns tweet">
+            <div ng-repeat="tweet in lineOne" class="three columns tweet">
 
                 <div class="tweet-content">
                     <p ng-bind-html="tweet.text | trust"></p>
@@ -52,7 +52,7 @@
         </div>
 
         <div class="row clearfix">
-            <div ng-repeat="tweet in tweetsResult2" class="three columns tweet">
+            <div ng-repeat="tweet in lineTwo" class="three columns tweet">
 
                 <div class="tweet-content">
                     <p ng-bind-html="tweet.text | trust"></p>
@@ -66,7 +66,7 @@
         </div>
 
         <div class="row clearfix">
-            <div ng-repeat="tweet in tweetsResult3" class="three columns tweet">
+            <div ng-repeat="tweet in lineThree" class="three columns tweet">
 
                 <div class="tweet-content">
                     <p ng-bind-html="tweet.text | trust"></p>
@@ -80,7 +80,7 @@
         </div>
 
         <div class="row clearfix">
-            <div ng-repeat="tweet in tweetsResult4" class="three columns tweet">
+            <div ng-repeat="tweet in lineFour" class="three columns tweet">
 
                 <div class="tweet-content">
                     <p ng-bind-html="tweet.text | trust"></p>
